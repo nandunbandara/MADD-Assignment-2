@@ -11,9 +11,24 @@ import Foundation
 
 func getdata(url: String){
 
-    let term = "puzzle";
-    let limit = 200;
-    let entity = "software";
+    let currentTerm = "puzzle";
+    let currentLimit = 200;
+    let currentEntity = "software";
     
-    guard let url = URL(string: Constants.getSearchApiUrl(term,limit,entity))
+    let constants = Constants();
+    guard let url = URL( string: constants.getSearchApiUrl( term:currentTerm, limit:currentLimit, entity:currentEntity )) else { return }
+    
+    let session  = URLSession.shared
+    session.dataTask(with: url) { (data, response, error) in
+        
+//        check response
+        if let  response = response {
+            print (response)
+        }
+        
+//        check data
+        if let data = data {
+            print (data)
+        }
+        }.resume();
 }
