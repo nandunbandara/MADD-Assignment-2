@@ -1,0 +1,6 @@
+framework module Pods_MADD_Assignment_2 {
+  umbrella header "Pods-MADD-Assignment-2-umbrella.h"
+
+  export *
+  module * { export * }
+}
