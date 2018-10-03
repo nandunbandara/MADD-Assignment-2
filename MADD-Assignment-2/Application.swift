@@ -6,4 +6,20 @@
 //  Copyright © 2018 Nandun Bandara. All rights reserved.
 //
 
-import Foundation
+class Application {
+    
+    var name: String?
+    var imageUrl: String?
+    var description: String?
+    var features: [String]?
+    var price: Float?
+    var avgRating: Float?
+    
+    init(_ params: [String: Any]) {
+        
+        self.name = params["trackName"] as? String
+        
+    }
+    
+}
+
