@@ -14,10 +14,14 @@ class Application {
     var features: [String]?
     var price: Float?
     var avgRating: Float?
+    var sellerName: String?
     
     init(_ params: [String: Any]) {
         
         self.name = params["trackName"] as? String
+        self.imageUrl = params["artworkUrl60"] as? String
+        self.sellerName = params["sellerName"] as? String
+        self.price = params["price"] as? Float
         
     }
     
