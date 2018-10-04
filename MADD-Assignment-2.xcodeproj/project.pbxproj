@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46DD353A216521120012A1E1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD3539216521120012A1E1 /* Application.swift */; };
+		46DD353C216522960012A1E1 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD353B216522960012A1E1 /* ApiService.swift */; };
 		46FB17EF21651AC900F0E153 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB17EE21651AC900F0E153 /* AppDelegate.swift */; };
 		46FB17F121651AC900F0E153 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB17F021651AC900F0E153 /* ViewController.swift */; };
 		46FB17F421651AC900F0E153 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46FB17F221651AC900F0E153 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46DD3539216521120012A1E1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		46DD353B216522960012A1E1 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		46FB17EB21651AC900F0E153 /* MADD-Assignment-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MADD-Assignment-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FB17EE21651AC900F0E153 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46FB17F021651AC900F0E153 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				46FB17F521651ACB00F0E153 /* Assets.xcassets */,
 				46FB17F721651ACB00F0E153 /* LaunchScreen.storyboard */,
 				46FB17FA21651ACB00F0E153 /* Info.plist */,
+				46DD3539216521120012A1E1 /* Application.swift */,
+				46DD353B216522960012A1E1 /* ApiService.swift */,
 			);
 			path = "MADD-Assignment-2";
 			sourceTree = "<group>";
@@ -99,6 +105,7 @@
 				46FB17E721651AC900F0E153 /* Sources */,
 				46FB17E821651AC900F0E153 /* Frameworks */,
 				46FB17E921651AC900F0E153 /* Resources */,
+				610AF14642BB04C3FF7988B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,7 +163,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F79276C38E87A592BC9D1E0C /* [CP] Check Pods Manifest.lock */ = {
+		610AF14642BB04C3FF7988B2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -164,12 +171,30 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MADD-Assignment-2/Pods-MADD-Assignment-2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MADD-Assignment-2/Pods-MADD-Assignment-2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F79276C38E87A592BC9D1E0C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MADD-Assignment-2-checkManifestLockResult.txt",
 			);
@@ -185,7 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46DD353A216521120012A1E1 /* Application.swift in Sources */,
 				46FB17F121651AC900F0E153 /* ViewController.swift in Sources */,
+				46DD353C216522960012A1E1 /* ApiService.swift in Sources */,
 				46FB17EF21651AC900F0E153 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
