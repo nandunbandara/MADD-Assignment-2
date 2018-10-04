@@ -75,7 +75,7 @@ class AppTableViewController: UITableViewController {
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             cell.imageView?.image = UIImage(data: data!)
         }
-        
+        cell.ownerLabel.text = app.sellerName
        
 //        cell.ownerLabel.text = app.avgRating
         
