@@ -12,6 +12,7 @@ import Alamofire
 class API {
     
     static func fetchApplications(_ term: String, limit: Int, entity: String, completion: @escaping ([Application]?) -> Void) {
+        print("fetch applications called")
         guard let url = URL(string: "https://itunes.apple.com/search?term=puzzle&limit=20&entity=software") else {
             completion(nil)
             return

@@ -9,10 +9,25 @@
 import UIKit
 
 class AppTableViewController: UITableViewController {
+    
+    var apps = [Application]()
+    
+    private func loadApplications() {
+        API.fetchApplications("", limit: 100, entity: "Software", completion: self.callback)
+    }
+    
+    private func callback(_ applications: [Application]?) -> Void {
+        if applications != nil {
+            self.apps = applications!
+        }
+        self.tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("View Controller loaded")
+        self.loadApplications()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,24 +43,39 @@ class AppTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        print("number of sections")
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("count")
+        print(self.apps.count)
+        return self.apps.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        
+        let cellIdentifier = "ApplicationTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            as? ApplicationTableViewCell else {
+                fatalError("The dequeued cell is not an instance of ApplicationTableViewCell.")
+            }
+        
+        let app = apps[indexPath.row]
+        
+        cell.nameLabel.text = app.name
+        print(app.name)
+//        let photoUrl = app.imageUrl
+//        [cell.photoImageView.setImageWithURL:[NSURL, URLWithString,:@photoUrl], placeholderImage:[UIImage, imageNamed,:@"placeholder.png"]]
+//        cell.ownerLabel.text = app.avgRating
+        
+        
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
