@@ -67,8 +67,16 @@ class AppTableViewController: UITableViewController {
         
         cell.nameLabel.text = app.name
         print(app.name)
-//        let photoUrl = app.imageUrl
-//        [cell.photoImageView.setImageWithURL:[NSURL, URLWithString,:@photoUrl], placeholderImage:[UIImage, imageNamed,:@"placeholder.png"]]
+        let photoUrl = app.imageUrl
+        
+        if app.imageUrl != nil {
+            print(app.imageUrl)
+            let url = URL(string: app.imageUrl!)
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.imageView?.image = UIImage(data: data!)
+        }
+        
+       
 //        cell.ownerLabel.text = app.avgRating
         
         
