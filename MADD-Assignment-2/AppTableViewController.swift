@@ -8,12 +8,14 @@
 
 import UIKit
 
-class AppTableViewController: UITableViewController {
+class AppTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var apps = [Application]()
     
-    private func loadApplications() {
-        API.fetchApplications("", limit: 100, entity: "Software", completion: self.callback)
+    private func loadApplications(_ term: String) {
+        API.fetchApplications("puzzle", limit: 100, entity: "Software", completion: self.callback)
     }
     
     private func callback(_ applications: [Application]?) -> Void {
@@ -26,13 +28,14 @@ class AppTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("View Controller loaded")
-        self.loadApplications()
+        self.loadApplications("")
+    
+    }
+    
+    // search on text change
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        loadApplications(searchText)
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,16 +69,13 @@ class AppTableViewController: UITableViewController {
         let app = apps[indexPath.row]
         
         cell.nameLabel.text = app.name
-        print(app.name)
-        let photoUrl = app.imageUrl
         
         if app.imageUrl != nil {
-            print(app.imageUrl)
             let url = URL(string: app.imageUrl!)
-            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            let data = try? Data(contentsOf: url!)
             cell.imageView?.image = UIImage(data: data!)
         }
-        
+        cell.ownerLabel.text = app.sellerName
        
 //        cell.ownerLabel.text = app.avgRating
         
@@ -83,6 +83,36 @@ class AppTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showAlert(application: self.apps[indexPath.row]);
+    }
+    
+    private func showAlert(application: Application){
+        
+        // set description
+        application.description = application.sellerName
+        var alert = UIAlertController(title: application.name, message: application.description , preferredStyle: .alert)
+                
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default,handler: nil))
+        let imageView = UIImageView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 50, height: 50)))
+        
+        if application.imageUrl != nil {
+            let url = URL(string: application.imageUrl!)
+            let data = try? Data(contentsOf: url!)
+            imageView.image = UIImage(data: data!)
+        }
+        
+        alert.view.addSubview(imageView)
+        
+        let height: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 450)
+        let width: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+        alert.view.addConstraint(height)
+        alert.view.addConstraint(width)
+
+        present(alert, animated: true, completion: nil)
+    }
+    
     
 
     /*

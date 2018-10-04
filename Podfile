@@ -6,4 +6,5 @@ target 'MADD-Assignment-2' do
 
   # Pods for MADD-Assignment-2
   pod 'Alamofire', '~> 4.7'
+
 end
