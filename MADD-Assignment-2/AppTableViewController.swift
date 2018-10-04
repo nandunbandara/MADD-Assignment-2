@@ -15,7 +15,7 @@ class AppTableViewController: UITableViewController, UISearchBarDelegate {
     var apps = [Application]()
     
     private func loadApplications(_ term: String) {
-        API.fetchApplications("", limit: 100, entity: "Software", completion: self.callback)
+        API.fetchApplications("puzzle", limit: 100, entity: "Software", completion: self.callback)
     }
     
     private func callback(_ applications: [Application]?) -> Void {
